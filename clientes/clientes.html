@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="clientes.css">
+</head>
+<body>
+  <div class="clientes-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <span class="brand-text">Barber<span>Go</span></span>
+        </div>
+
+        <nav class="menu">
+          <a href="../dashboard/dashboard.html" class="menu-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="../agenda/agenda.html" class="menu-item">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Agenda</span>
+          </a>
+
+          <a href="#" class="menu-item active">
+            <i class="fa-regular fa-user"></i>
+            <span>Clientes</span>
+          </a>
+
+          <a href="../estoque/estoque.html" class="menu-item">
+            <i class="fa-solid fa-box"></i>
+            <span>Estoque</span>
+          </a>
+
+          <a href="../financeiro/financeiro.html" class="menu-item">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>Financeiro</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Relacionamento e CRM</p>
+          <h1>Clientes</h1>
+          <span class="current-date">Base de clientes com histórico do último agendamento</span>
+        </div>
+      </header>
+
+      <section class="summary-grid">
+        <article class="card summary-card">
+          <p class="summary-label">Total de clientes</p>
+          <h2 id="totalClients">0</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Precisam de retorno</p>
+          <h2 id="inactiveClients">0</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Clientes ativos</p>
+          <h2 id="activeClients">0</h2>
+        </article>
+      </section>
+
+      <section class="card controls-card">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Buscar cliente por nome ou telefone">
+        </div>
+
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="todos">Todos</button>
+          <button class="filter-btn" data-filter="ativos">Ativos</button>
+          <button class="filter-btn" data-filter="reengajar">Reengajar</button>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-header">
+          <div>
+            <p class="card-label">Lista de clientes</p>
+            <h3>Último agendamento e status de retorno</h3>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Último agendamento</th>
+                <th>Status</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="clientsTableBody"></tbody>
+          </table>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+          Nenhum cliente encontrado.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="clientes.js"></script>
+</body>
+</html>

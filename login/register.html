@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <main class="register-page">
+    <section class="register-left">
+      <form id="registerForm" class="register-card">
+        <h1>Criar sua Conta BarberGo</h1>
+
+        <div class="form-group">
+          <label for="nome">Nome da Barbearia</label>
+          <div class="input-wrap">
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="nome" placeholder="Seu Nome" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <div class="input-wrap">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="email" placeholder="E-mail" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp</label>
+          <div class="input-wrap">
+            <i class="fa-brands fa-whatsapp"></i>
+            <input type="text" id="whatsapp" placeholder="WhatsApp" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Criar Senha</label>
+          <div class="input-wrap password-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="senha" placeholder="Criar Senha" autocomplete="new-password">
+            <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar ou ocultar senha">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <span>Dados de Pagamento</span>
+        </div>
+
+        <div class="form-group">
+          <label for="cartao">Cartão de Crédito</label>
+          <div class="input-wrap">
+            <i class="fa-regular fa-credit-card"></i>
+            <input type="text" id="cartao" placeholder="0034 4008 6878 0000" inputmode="numeric">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nomeCartao">Nome do titular</label>
+          <div class="input-wrap">
+            <input type="text" id="nomeCartao" placeholder="Nome do titular">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="validade">Validade</label>
+            <div class="input-wrap">
+              <input type="text" id="validade" placeholder="MM/AA" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cvv">CVV</label>
+            <div class="input-wrap">
+              <input type="text" id="cvv" placeholder="CVV" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+
+        <p class="price">Total a pagar hoje: <strong>R$ 69,90</strong></p>
+
+        <p id="error" class="message" aria-live="polite"></p>
+
+        <button class="btn-register" type="submit">Finalizar Cadastro e Pagar</button>
+      </form>
+    </section>
+
+    <section class="register-right">
+      <div class="right-content">
+        <div class="brand">
+          <h2>Barber<span>Go</span></h2>
+          <p>Gestão Inteligente SaaS<br>para Barbearias</p>
+        </div>
+
+        <ul class="features">
+          <li><span>Agenda</span><i class="fa-regular fa-calendar"></i></li>
+          <li><span>Financeiro</span><i class="fa-solid fa-sack-dollar"></i></li>
+          <li><span>Estoque</span><i class="fa-solid fa-box-open"></i></li>
+          <li><span>Relacionamento CRM</span><i class="fa-solid fa-users"></i></li>
+          <li><span>Comunicação</span><i class="fa-brands fa-whatsapp"></i></li>
+        </ul>
+
+        <div class="plan-box">
+          <strong>PLANO MENSAL - R$ 69,90/mês</strong>
+          <span>Acesso total aos módulos</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="register.js"></script>
+</body>
+</html>

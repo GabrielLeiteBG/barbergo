@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <main class="login-page">
+    <section class="login-left">
+      <div class="brand-wrap">
+        <div class="brand-badge">
+          <span>BG</span>
+        </div>
+
+        <div class="brand-texts">
+          <h1>Barber<span>Go</span></h1>
+          <p>Gestão inteligente para barbearias</p>
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <span class="eyebrow">Seu negócio mais organizado</span>
+        <h2>Agendamentos, clientes e gestão em um só lugar.</h2>
+        <p>
+          Controle agenda, financeiro, estoque e relacionamento com clientes
+          em uma plataforma simples, moderna e pronta para o dia a dia da barbearia.
+        </p>
+      </div>
+    </section>
+
+    <section class="login-right">
+      <div class="login-box">
+        <div class="login-header">
+          <h2>Bem-vindo de volta</h2>
+          <p>Entre para acessar sua barbearia no BarberGo.</p>
+        </div>
+
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Digite seu e-mail" autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <div class="password-field">
+              <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password">
+              <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar ou ocultar senha">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="remember-me">
+              <input type="checkbox" id="rememberMe">
+              <span>Lembrar-me</span>
+            </label>
+
+            <a href="#" class="forgot-link">Esqueceu a senha?</a>
+          </div>
+
+          <p id="errorMessage" class="form-message"></p>
+
+          <button type="submit" class="primary-btn">Entrar</button>
+        </form>
+
+        <div class="divider">
+          <span>Novo no BarberGo?</span>
+        </div>
+
+        <a href="register.html" class="secondary-btn">Criar conta</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

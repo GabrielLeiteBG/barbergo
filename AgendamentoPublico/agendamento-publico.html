@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="agendamento-publico.css">
+</head>
+<body>
+  <main class="public-page">
+    <section class="hero-card">
+      <div class="hero-left">
+        <div class="brand-row">
+          <div class="brand-avatar" id="brandAvatar">BG</div>
+          <div>
+            <p class="eyebrow">Agendamento Online</p>
+            <h1 id="shopNameDisplay">Minha Barbearia</h1>
+          </div>
+        </div>
+
+        <p class="hero-text">
+          Escolha o melhor dia e horário para seu atendimento. Seu agendamento será enviado direto para a agenda da barbearia.
+        </p>
+
+        <div class="info-box">
+          <span>Telefone</span>
+          <strong id="shopPhoneDisplay">Não informado</strong>
+        </div>
+
+        <div class="info-box">
+          <span>WhatsApp</span>
+          <strong id="shopWhatsappDisplay">Não informado</strong>
+        </div>
+
+        <div class="services-box">
+          <p class="section-label">Serviços disponíveis</p>
+          <div class="service-tags" id="publicServicesList"></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="form-card">
+          <div class="form-header">
+            <p class="eyebrow">Reserve seu horário</p>
+            <h2>Faça seu agendamento</h2>
+          </div>
+
+          <form id="publicAppointmentForm" class="appointment-form">
+            <div class="form-group">
+              <label for="clientName">Seu nome</label>
+              <input type="text" id="clientName" placeholder="Digite seu nome completo">
+            </div>
+
+            <div class="form-group">
+              <label for="clientPhone">Seu telefone</label>
+              <input type="text" id="clientPhone" placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="form-group">
+             <label for="appointmentDate">Data</label>
+             <input type="date" id="appointmentDate" class="date-input">
+             <small class="field-hint">Agendamentos disponíveis para os próximos 30 dias.</small>
+            </div>
+
+           <div class="form-group">
+              <label for="serviceType">Serviço</label>
+              <select id="serviceType">
+                <option value="">Selecione um serviço</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Horários disponíveis</label>
+              <div class="times-grid" id="timesGrid"></div>
+            </div>
+
+            <p id="selectedTimeText" class="selected-time">Nenhum horário selecionado.</p>
+            <p id="formMessage" class="form-message"></p>
+
+            <button type="submit" class="primary-btn">Confirmar agendamento</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="agendamento-publico.js"></script>
+</body>
+</html>

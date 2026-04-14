@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financeiro | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="financeiro.css">
+</head>
+<body>
+  <div class="financeiro-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <span class="brand-text">Barber<span>Go</span></span>
+        </div>
+
+        <nav class="menu">
+          <a href="../dashboard/dashboard.html" class="menu-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="../agenda/agenda.html" class="menu-item">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Agenda</span>
+          </a>
+
+          <a href="../clientes/clientes.html" class="menu-item">
+            <i class="fa-regular fa-user"></i>
+            <span>Clientes</span>
+          </a>
+
+          <a href="../estoque/estoque.html" class="menu-item">
+            <i class="fa-solid fa-box"></i>
+            <span>Estoque</span>
+          </a>
+
+          <a href="#" class="menu-item active">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>Financeiro</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Gestão Financeira</p>
+          <h1>Financeiro</h1>
+          <span class="current-date">Controle de entradas, saídas e compras de estoque</span>
+        </div>
+      </header>
+
+      <section class="summary-grid">
+        <article class="card summary-card">
+          <p class="summary-label">Entradas</p>
+          <h2 id="totalIncome">R$ 0,00</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Saídas</p>
+          <h2 id="totalExpense">R$ 0,00</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Saldo</p>
+          <h2 id="balanceValue">R$ 0,00</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Gasto com estoque</p>
+          <h2 id="stockExpense">R$ 0,00</h2>
+        </article>
+      </section>
+
+      <section class="forms-grid">
+        <article class="card form-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Lançamento manual</p>
+              <h3>Adicionar entrada ou saída</h3>
+            </div>
+          </div>
+
+          <form id="manualForm" class="finance-form">
+            <div class="form-group">
+              <label for="transactionType">Tipo</label>
+              <select id="transactionType">
+                <option value="">Selecione</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="transactionCategory">Categoria</label>
+              <input type="text" id="transactionCategory" placeholder="Ex: Corte, Aluguel, Venda de Produto">
+            </div>
+
+            <div class="form-group">
+              <label for="transactionDescription">Descrição</label>
+              <input type="text" id="transactionDescription" placeholder="Descreva a movimentação">
+            </div>
+
+            <div class="form-group">
+              <label for="transactionAmount">Valor</label>
+              <input type="number" id="transactionAmount" min="0" step="0.01" placeholder="0,00">
+            </div>
+
+            <button type="submit" class="primary-btn full-width">Salvar lançamento</button>
+          </form>
+
+          <p id="manualMessage" class="form-message"></p>
+        </article>
+
+        <article class="card form-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Compra para estoque</p>
+              <h3>Registrar gasto e atualizar estoque</h3>
+            </div>
+          </div>
+
+          <form id="stockPurchaseForm" class="finance-form">
+            <div class="form-group">
+              <label for="stockProduct">Produto</label>
+              <select id="stockProduct">
+                <option value="">Selecione um produto</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="purchaseQuantity">Quantidade comprada</label>
+              <input type="number" id="purchaseQuantity" min="1" placeholder="0">
+            </div>
+
+            <div class="form-group">
+              <label for="unitCost">Custo unitário</label>
+              <input type="number" id="unitCost" min="0" step="0.01" placeholder="0,00">
+            </div>
+
+            <div class="purchase-total-box">
+              <span>Total da compra</span>
+              <strong id="purchaseTotal">R$ 0,00</strong>
+            </div>
+
+            <button type="submit" class="primary-btn full-width">Registrar compra</button>
+          </form>
+
+          <p id="stockMessage" class="form-message"></p>
+        </article>
+      </section>
+
+      <section class="card controls-card">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Buscar por categoria ou descrição">
+        </div>
+
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="todos">Todos</button>
+          <button class="filter-btn" data-filter="entrada">Entradas</button>
+          <button class="filter-btn" data-filter="saida">Saídas</button>
+          <button class="filter-btn" data-filter="estoque">Estoque</button>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-header">
+          <div>
+            <p class="card-label">Histórico financeiro</p>
+            <h3>Movimentações registradas</h3>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="financeTableBody"></tbody>
+          </table>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+          Nenhuma movimentação encontrada.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="financeiro.js"></script>
+</body>
+</html>

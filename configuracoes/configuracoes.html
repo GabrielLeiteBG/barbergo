@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="configuracoes.css">
+</head>
+<body>
+  <div class="config-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <span class="brand-text">Barber<span>Go</span></span>
+        </div>
+
+        <nav class="menu">
+          <a href="../dashboard/dashboard.html" class="menu-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="../agenda/agenda.html" class="menu-item">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Agenda</span>
+          </a>
+
+          <a href="../clientes/clientes.html" class="menu-item">
+            <i class="fa-regular fa-user"></i>
+            <span>Clientes</span>
+          </a>
+
+          <a href="../estoque/estoque.html" class="menu-item">
+            <i class="fa-solid fa-box"></i>
+            <span>Estoque</span>
+          </a>
+
+          <a href="../financeiro/financeiro.html" class="menu-item">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>Financeiro</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <a href="../configuracoes/configuracoes.html" class="icon-btn active-icon">
+          <i class="fa-solid fa-gear"></i>
+        </a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Personalização do sistema</p>
+          <h1>Configurações da Barbearia</h1>
+          <span class="current-date">Defina como sua barbearia aparece dentro do BarberGo</span>
+        </div>
+      </header>
+
+      <section class="settings-grid">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Dados principais</p>
+              <h3>Informações da barbearia</h3>
+            </div>
+          </div>
+
+          <form id="settingsForm" class="settings-form">
+            <div class="form-group">
+              <label for="shopName">Nome da barbearia</label>
+              <input type="text" id="shopName" placeholder="Ex: Barbearia Poppins">
+            </div>
+
+            <div class="form-group">
+              <label for="shopPhone">Telefone</label>
+              <input type="text" id="shopPhone" placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="form-group">
+              <label for="shopWhatsapp">WhatsApp</label>
+              <input type="text" id="shopWhatsapp" placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="form-group">
+              <label for="shopMessage">Mensagem padrão de reengajamento</label>
+              <textarea id="shopMessage" rows="5" placeholder="Mensagem opcional para lembrar o cliente de voltar à barbearia"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="shopImage">Foto ou logo</label>
+              <input type="file" id="shopImage" accept="image/*">
+            </div>
+
+            <div class="actions-row">
+              <button type="submit" class="primary-btn">Salvar configurações</button>
+              <button type="button" class="secondary-btn" id="removeImageBtn">Remover foto</button>
+            </div>
+
+            <p id="formMessage" class="form-message"></p>
+          </form>
+        </article>
+
+        <article class="card preview-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Pré-visualização</p>
+              <h3>Como vai aparecer no sistema</h3>
+            </div>
+          </div>
+
+          <div class="profile-preview">
+            <div class="preview-avatar" id="previewAvatar">BG</div>
+
+            <div class="preview-info">
+              <strong id="previewName">Minha Barbearia</strong>
+              <span id="previewPhone">Telefone não definido</span>
+              <span id="previewWhatsapp">WhatsApp não definido</span>
+            </div>
+          </div>
+
+          <div class="preview-box">
+            <p class="preview-title">Saudação no dashboard</p>
+            <h2>Olá, <span id="previewGreeting">Minha Barbearia</span></h2>
+          </div>
+
+          <div class="preview-box">
+            <p class="preview-title">Mensagem de reengajamento</p>
+            <p class="preview-message" id="previewMessage">Nenhuma mensagem configurada.</p>
+          </div>
+
+          <div class="preview-box">
+            <p class="preview-title">Serviços configurados</p>
+            <div class="preview-services" id="previewServicesList"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="services-section">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Serviços da barbearia</p>
+              <h3>Cadastre os serviços oferecidos</h3>
+            </div>
+          </div>
+
+          <form id="serviceForm" class="service-form">
+            <div class="form-group">
+              <label for="serviceName">Nome do serviço</label>
+              <input type="text" id="serviceName" placeholder="Ex: Corte degradê">
+            </div>
+
+            <div class="form-group">
+              <label for="serviceDuration">Duração (min)</label>
+              <input type="number" id="serviceDuration" min="0" placeholder="Ex: 45">
+            </div>
+
+            <div class="form-group">
+              <label for="servicePrice">Preço (R$)</label>
+              <input type="number" id="servicePrice" min="0" step="0.01" placeholder="Ex: 35,00">
+            </div>
+
+            <button type="submit" class="primary-btn" id="serviceSubmitBtn">Adicionar serviço</button>
+            <button type="button" class="secondary-btn hidden" id="cancelEditBtn">Cancelar edição</button>
+          </form>
+
+          <p id="serviceMessage" class="form-message"></p>
+
+          <div class="services-list" id="servicesList"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="configuracoes.js"></script>
+</body>
+</html>

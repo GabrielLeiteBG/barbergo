@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estoque | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="estoque.css">
+</head>
+<body>
+  <div class="estoque-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <span class="brand-text">Barber<span>Go</span></span>
+        </div>
+
+        <nav class="menu">
+          <a href="../dashboard/dashboard.html" class="menu-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="../agenda/agenda.html" class="menu-item">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Agenda</span>
+          </a>
+
+          <a href="../clientes/clientes.html" class="menu-item">
+            <i class="fa-regular fa-user"></i>
+            <span>Clientes</span>
+          </a>
+
+          <a href="#" class="menu-item active">
+            <i class="fa-solid fa-box"></i>
+            <span>Estoque</span>
+          </a>
+
+          <a href="../financeiro/financeiro.html" class="menu-item">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>Financeiro</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Controle Operacional</p>
+          <h1>Estoque</h1>
+          <span class="current-date">Cadastro, monitoramento e alertas de reposição</span>
+        </div>
+      </header>
+
+      <section class="summary-grid">
+        <article class="card summary-card">
+          <p class="summary-label">Produtos cadastrados</p>
+          <h2 id="totalProducts">0</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Produtos em alerta</p>
+          <h2 id="lowStockCount">0</h2>
+        </article>
+
+        <article class="card summary-card">
+          <p class="summary-label">Unidades em estoque</p>
+          <h2 id="totalUnits">0</h2>
+        </article>
+      </section>
+
+      <section class="card form-card">
+        <div class="card-header">
+          <div>
+            <p class="card-label">Novo produto</p>
+            <h3>Cadastrar item no estoque</h3>
+          </div>
+        </div>
+
+        <form id="productForm" class="product-form">
+          <div class="form-group">
+            <label for="productName">Nome do produto</label>
+            <input type="text" id="productName" placeholder="Ex: Pomada Modeladora">
+          </div>
+
+          <div class="form-group">
+            <label for="productCategory">Categoria</label>
+            <input type="text" id="productCategory" placeholder="Ex: Finalização">
+          </div>
+
+          <div class="form-group">
+            <label for="productQuantity">Quantidade atual</label>
+            <input type="number" id="productQuantity" min="0" placeholder="0">
+          </div>
+
+          <div class="form-group">
+            <label for="productMin">Estoque mínimo</label>
+            <input type="number" id="productMin" min="0" placeholder="0">
+          </div>
+
+          <button type="submit" class="primary-btn">Cadastrar produto</button>
+        </form>
+
+        <p id="formMessage" class="form-message"></p>
+      </section>
+
+      <section class="card controls-card">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Buscar produto por nome ou categoria">
+        </div>
+
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="todos">Todos</button>
+          <button class="filter-btn" data-filter="alerta">Em alerta</button>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="table-header">
+          <div>
+            <p class="card-label">Lista de produtos</p>
+            <h3>Controle atual do estoque</h3>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Estoque mínimo</th>
+                <th>Status</th>
+                <th>Atualizado em</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="stockTableBody"></tbody>
+          </table>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+          Nenhum produto encontrado.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="estoque.js"></script>
+</body>
+</html>

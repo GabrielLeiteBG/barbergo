@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda | BarberGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="agenda.css">
+</head>
+<body>
+  <div class="agenda-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <span class="brand-text">Barber<span>Go</span></span>
+        </div>
+
+        <nav class="menu">
+          <a href="../dashboard/dashboard.html" class="menu-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="#" class="menu-item active">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Agenda</span>
+          </a>
+
+          <a href="../clientes/clientes.html" class="menu-item">
+            <i class="fa-regular fa-user"></i>
+            <span>Clientes</span>
+          </a>
+
+          <a href="../estoque/estoque.html" class="menu-item">
+            <i class="fa-solid fa-box"></i>
+            <span>Estoque</span>
+          </a>
+
+          <a href="../financeiro/financeiro.html" class="menu-item">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>Financeiro</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Gestão de Agenda</p>
+          <h1>Agenda de Atendimentos</h1>
+          <span id="selectedDateLabel" class="current-date"></span>
+        </div>
+
+        <button class="primary-btn" id="openModalBtn">
+          <i class="fa-solid fa-plus"></i>
+          Novo agendamento
+        </button>
+      </header>
+
+      <section class="agenda-grid">
+        <div class="left-column">
+          <article class="card calendar-card">
+            <div class="card-header">
+              <button class="nav-btn" id="prevMonthBtn">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+
+              <div class="month-title" id="monthTitle"></div>
+
+              <button class="nav-btn" id="nextMonthBtn">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <div class="weekdays">
+              <span>Dom</span>
+              <span>Seg</span>
+              <span>Ter</span>
+              <span>Qua</span>
+              <span>Qui</span>
+              <span>Sex</span>
+              <span>Sáb</span>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </article>
+
+          <div class="summary-grid">
+            <article class="card summary-card">
+              <p class="summary-label">Agendamentos no dia</p>
+              <h2 id="appointmentsCount">0</h2>
+            </article>
+
+            <article class="card summary-card">
+              <p class="summary-label">Horários ocupados</p>
+              <h2 id="occupiedCount">0</h2>
+            </article>
+          </div>
+
+          <article class="card info-card">
+            <div class="card-header simple">
+              <div>
+                <p class="card-label">Informações do dia</p>
+                <h3>Resumo rápido</h3>
+              </div>
+            </div>
+
+            <div class="info-list">
+              <div class="info-item">
+                <span>Data selecionada</span>
+                <strong id="infoSelectedDate">--</strong>
+              </div>
+
+              <div class="info-item">
+                <span>Primeiro horário</span>
+                <strong id="firstAppointment">Nenhum</strong>
+              </div>
+
+              <div class="info-item">
+                <span>Último horário</span>
+                <strong id="lastAppointment">Nenhum</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="right-column">
+          <article class="card day-schedule-card">
+            <div class="card-header simple">
+              <div>
+                <p class="card-label">Agenda do dia</p>
+                <h3 id="dayTitle">Atendimentos</h3>
+              </div>
+            </div>
+
+            <div class="timeline" id="timeline"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <p class="card-label">Novo agendamento</p>
+          <h3>Cadastrar atendimento</h3>
+        </div>
+
+        <button class="close-btn" id="closeModalBtn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="appointmentForm" class="appointment-form">
+        <div class="form-group">
+          <label for="clientName">Nome do cliente</label>
+          <input type="text" id="clientName" placeholder="Digite o nome do cliente">
+        </div>
+
+        <div class="form-group">
+          <label for="clientPhone">Telefone</label>
+          <input type="text" id="clientPhone" placeholder="(00) 00000-0000">
+        </div>
+
+        <div class="form-group">
+          <label for="serviceType">Serviço</label>
+          <select id="serviceType">
+            <option value="">Selecione</option>
+            <option value="Corte">Corte</option>
+            <option value="Barba">Barba</option>
+            <option value="Corte + Barba">Corte + Barba</option>
+            <option value="Sobrancelha">Sobrancelha</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="appointmentTime">Horário</label>
+          <select id="appointmentTime"></select>
+        </div>
+
+        <p id="formMessage" class="form-message"></p>
+
+        <button type="submit" class="primary-btn full-width">
+          Salvar agendamento
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="agenda.js"></script>
+</body>
+</html>
