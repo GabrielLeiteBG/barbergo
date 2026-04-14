@@ -1,174 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | BarberGo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="dashboard.css">
-</head>
-<body>
-  <div class="dashboard-layout">
-    <aside class="sidebar">
-      <div class="sidebar-top">
-        <div class="brand">
-          <span class="brand-text">Barber<span>Gay</span></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | BarberGo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand">
+            <span class="brand-text">Barber<span>Go</span></span>
+          </div>
+
+          <nav class="menu">
+            <a href="#" class="menu-item active">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Dashboard</span>
+            </a>
+
+            <a href="../agenda/agenda.html" class="menu-item">
+              <i class="fa-regular fa-calendar"></i>
+              <span>Agenda</span>
+            </a>
+
+            <a href="../clientes/clientes.html" class="menu-item">
+              <i class="fa-regular fa-user"></i>
+              <span>Clientes</span>
+            </a>
+
+            <a href="../estoque/estoque.html" class="menu-item">
+              <i class="fa-solid fa-box"></i>
+              <span>Estoque</span>
+            </a>
+
+            <a href="../financeiro/financeiro.html" class="menu-item">
+              <i class="fa-solid fa-dollar-sign"></i>
+              <span>Financeiro</span>
+            </a>
+          </nav>
         </div>
 
-        <nav class="menu">
-          <a href="#" class="menu-item active">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Dashboard</span>
+        <div class="sidebar-bottom">
+          <a class="icon-btn" href="../configuracoes/configuracoes.html">
+            <i class="fa-solid fa-gear"></i>
           </a>
-
-          <a href="../agenda/agenda.html" class="menu-item">
-            <i class="fa-regular fa-calendar"></i>
-            <span>Agenda</span>
-          </a>
-
-          <a href="../clientes/clientes.html" class="menu-item">
-            <i class="fa-regular fa-user"></i>
-            <span>Clientes</span>
-          </a>
-
-          <a href="../estoque/estoque.html" class="menu-item">
-            <i class="fa-solid fa-box"></i>
-            <span>Estoque</span>
-          </a>
-
-          <a href="../financeiro/financeiro.html" class="menu-item">
-            <i class="fa-solid fa-dollar-sign"></i>
-            <span>Financeiro</span>
-          </a>
-        </nav>
-      </div>
-
-      <div class="sidebar-bottom">
-        <a class="icon-btn" href="../configuracoes/configuracoes.html">
-          <i class="fa-solid fa-gear"></i>
-        </a>
-      </div>
-    </aside>
-
-    <main class="main-content">
-      <header class="topbar">
-        <div class="topbar-left">
-          <p class="eyebrow">Dashboard Geral</p>
-          <h1>Olá, <span id="greetingName">Minha Barbearia</span></h1>
-          <span id="currentDate" class="current-date"></span>
         </div>
+      </aside>
 
-        <div class="topbar-right">
-          <div class="profile-card">
-            <div class="profile-avatar" id="profileAvatar">BG</div>
-            <div>
-              <strong id="profileName">Minha Barbearia</strong>
-              <p>Plano mensal ativo</p>
+      <main class="main-content">
+        <header class="topbar">
+          <div class="topbar-left">
+            <p class="eyebrow">Dashboard Geral</p>
+            <h1>Olá, <span id="greetingName">Minha Barbearia</span></h1>
+            <span id="currentDate" class="current-date"></span>
+          </div>
+
+          <div class="topbar-right">
+            <div class="profile-card">
+              <div class="profile-avatar" id="profileAvatar">BG</div>
+              <div>
+                <strong id="profileName">Minha Barbearia</strong>
+                <p>Plano mensal ativo</p>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <section class="stats-grid">
-        <article class="card card-large">
-          <div class="card-header">
-            <div>
-              <p class="card-label">Agendamentos Hoje</p>
-              <h2 id="appointmentsCount">0</h2>
+        <section class="stats-grid">
+          <article class="card card-large">
+            <div class="card-header">
+              <div>
+                <p class="card-label">Agendamentos Hoje</p>
+                <h2 id="appointmentsCount">0</h2>
+              </div>
+              <i class="fa-regular fa-calendar-days card-icon"></i>
             </div>
-            <i class="fa-regular fa-calendar-days card-icon"></i>
-          </div>
 
-          <div class="line-chart" id="lineChart"></div>
+            <div class="line-chart" id="lineChart"></div>
 
-          <div class="card-footer">
-            <span class="neutral">Aguardando novos agendamentos.</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <p class="card-label">Faturamento Diário</p>
-              <h2 id="dailyRevenue">R$ 0,00</h2>
+            <div class="card-footer">
+              <span class="neutral">Aguardando novos agendamentos.</span>
             </div>
-            <i class="fa-solid fa-dollar-sign card-icon"></i>
-          </div>
+          </article>
 
-          <div class="bar-chart mini-bars" id="dailyBars"></div>
-
-          <div class="card-footer">
-            <span class="neutral">Nenhuma movimentação financeira hoje.</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <p class="card-label">Novos Clientes</p>
-              <h2 id="newClientsCount">0</h2>
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="card-label">Faturamento Diário</p>
+                <h2 id="dailyRevenue">R$ 0,00</h2>
+              </div>
+              <i class="fa-solid fa-dollar-sign card-icon"></i>
             </div>
-            <i class="fa-solid fa-user-plus card-icon"></i>
-          </div>
 
-          <div class="metric-box">
-            <div>
-              <span>Cadastros desta semana</span>
-              <strong id="weeklyClients">0</strong>
+            <div class="bar-chart mini-bars" id="dailyBars"></div>
+
+            <div class="card-footer">
+              <span class="neutral">Nenhuma movimentação financeira hoje.</span>
             </div>
-            <div>
-              <span>Retenção estimada</span>
-              <strong id="retentionRate">0%</strong>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="card-label">Novos Clientes</p>
+                <h2 id="newClientsCount">0</h2>
+              </div>
+              <i class="fa-solid fa-user-plus card-icon"></i>
             </div>
-          </div>
 
-          <div class="card-footer">
-            <span class="neutral">Nenhum novo cliente cadastrado hoje.</span>
-          </div>
-        </article>
-      </section>
-
-      <section class="content-grid">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <p class="card-label">Faturamento Semanal</p>
-              <h3>Resumo dos últimos 7 dias</h3>
+            <div class="metric-box">
+              <div>
+                <span>Cadastros desta semana</span>
+                <strong id="weeklyClients">0</strong>
+              </div>
+              <div>
+                <span>Retenção estimada</span>
+                <strong id="retentionRate">0%</strong>
+              </div>
             </div>
-          </div>
 
-          <div class="weekly-chart" id="weeklyChart"></div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <p class="card-label">Estoque em Alerta</p>
-              <h3>Produtos com baixa quantidade</h3>
+            <div class="card-footer">
+              <span class="neutral">Nenhum novo cliente cadastrado hoje.</span>
             </div>
-            <i class="fa-solid fa-box-open card-icon"></i>
-          </div>
+          </article>
+        </section>
 
-          <div class="stock-list" id="stockList"></div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <p class="card-label">Agenda do Dia</p>
-              <h3>Próximos atendimentos</h3>
+        <section class="content-grid">
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="card-label">Faturamento Semanal</p>
+                <h3>Resumo dos últimos 7 dias</h3>
+              </div>
             </div>
-          </div>
 
-          <div class="schedule-list" id="scheduleList"></div>
-        </article>
-      </section>
-    </main>
-  </div>
+            <div class="weekly-chart" id="weeklyChart"></div>
+          </article>
 
-  <script src="dashboard.js"></script>
-</body>
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="card-label">Estoque em Alerta</p>
+                <h3>Produtos com baixa quantidade</h3>
+              </div>
+              <i class="fa-solid fa-box-open card-icon"></i>
+            </div>
+
+            <div class="stock-list" id="stockList"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="card-label">Agenda do Dia</p>
+                <h3>Próximos atendimentos</h3>
+              </div>
+            </div>
+
+            <div class="schedule-list" id="scheduleList"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
 </html>
