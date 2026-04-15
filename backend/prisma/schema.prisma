@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  BARBER
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PENDING
+  EXPIRED
+  CANCELED
+  TRIAL
+}
+
+model User {
+  id           String      @id @default(uuid())
+  name         String
+  email        String      @unique
+  password     String
+  role         UserRole    @default(OWNER)
+  barbershopId String?
+  barbershop   Barbershop? @relation(fields: [barbershopId], references: [id])
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Barbershop {
+  id             String         @id @default(uuid())
+  name           String
+  phone          String?
+  email          String?        @unique
+  address        String?
+  users          User[]
+  customers      Customer[]
+  appointments   Appointment[]
+  subscription   Subscription?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model Customer {
+  id             String          @id @default(uuid())
+  name           String
+  phone          String
+  email          String?
+  notes          String?
+  barbershopId   String
+  barbershop     Barbershop      @relation(fields: [barbershopId], references: [id])
+  appointments   Appointment[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([barbershopId])
+}
+
+model Appointment {
+  id             String             @id @default(uuid())
+  serviceName    String
+  appointmentAt  DateTime
+  status         AppointmentStatus  @default(PENDING)
+  notes          String?
+  customerId     String
+  customer       Customer           @relation(fields: [customerId], references: [id])
+  barbershopId   String
+  barbershop     Barbershop         @relation(fields: [barbershopId], references: [id])
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([customerId])
+  @@index([barbershopId])
+  @@index([appointmentAt])
+}
+
+model Subscription {
+  id                     String              @id @default(uuid())
+  planName               String
+  status                 SubscriptionStatus  @default(PENDING)
+  provider               String?
+  providerCustomerId     String?
+  providerSubscriptionId String?             @unique
+  currentPeriodEnd       DateTime?
+  trialEndsAt            DateTime?
+  barbershopId           String              @unique
+  barbershop             Barbershop          @relation(fields: [barbershopId], references: [id])
+  createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+}
