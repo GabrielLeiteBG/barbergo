@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import { BarbershopsModule } from "./barbershops/barbershops.module";
 import { ConfigModule } from "@nestjs/config";
 import { AppointmentsModule } from "./appointments/appointments.module";
 import { AuthModule } from "./auth/auth.module";
@@ -16,6 +17,7 @@ import { UsersModule } from "./users/users.module";
     UsersModule,
     CustomersModule,
     AppointmentsModule,
+    BarbershopsModule,
   ],
 })
 export class AppModule {}

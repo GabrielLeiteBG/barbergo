@@ -1,32 +1,85 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { AppointmentsService } from './appointments.service';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+} from "@nestjs/common";
+import { Request } from "express";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { AppointmentsService } from "./appointments.service";
 
-@Controller('appointments')
+@Controller("appointments")
 export class AppointmentsController {
   constructor(private readonly appointmentsService: AppointmentsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.appointmentsService.findAll();
+  findAll(@Req() req: Request) {
+    const user = req.user as { id: string };
+    return this.appointmentsService.findAll(user.id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.appointmentsService.findOne(id);
+  @UseGuards(JwtAuthGuard)
+  @Get(":id")
+  findOne(@Req() req: Request, @Param("id") id: string) {
+    const user = req.user as { id: string };
+    return this.appointmentsService.findOne(user.id, id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(
+    @Req() req: Request,
     @Body()
     body: {
+      customerId: string;
       serviceName: string;
       appointmentAt: string;
-      status?: 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCELED';
       notes?: string;
-      customerId: string;
-      barbershopId: string;
     },
   ) {
-    return this.appointmentsService.create(body);
+    const user = req.user as { id: string };
+    return this.appointmentsService.create(user.id, body);
+  }
+
+  @Post("public")
+  createPublic(
+    @Body()
+    body: {
+      barbershopId: string;
+      customerName: string;
+      customerPhone: string;
+      customerEmail?: string;
+      serviceName: string;
+      appointmentAt: string;
+      notes?: string;
+    },
+  ) {
+    return this.appointmentsService.createPublic(body);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch(":id/confirm")
+  confirm(@Req() req: Request, @Param("id") id: string) {
+    const user = req.user as { id: string };
+    return this.appointmentsService.confirm(user.id, id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch(":id/complete")
+  complete(@Req() req: Request, @Param("id") id: string) {
+    const user = req.user as { id: string };
+    return this.appointmentsService.complete(user.id, id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch(":id/cancel")
+  cancel(@Req() req: Request, @Param("id") id: string) {
+    const user = req.user as { id: string };
+    return this.appointmentsService.cancel(user.id, id);
   }
 }

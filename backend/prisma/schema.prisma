@@ -46,6 +46,9 @@ model Barbershop {
   phone          String?
   email          String?        @unique
   address        String?
+  opensAt        String?        
+  closesAt       String?        
+  workingDays    String?        
   users          User[]
   customers      Customer[]
   appointments   Appointment[]
